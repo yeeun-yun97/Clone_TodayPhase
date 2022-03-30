@@ -1,6 +1,7 @@
 package com.github.yeeun_yun97.clone.today_phase
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,6 +31,7 @@ class QuoteMainActivity : AppCompatActivity() {
         this.randomQuote()
 
         viewQuoteButton.setOnClickListener { randomQuote() }
+        editQuoteTextView.setOnClickListener { startActivity(Intent(this,QuoteListActivity::class.java)) }
     }
 
     fun initQuotes(){

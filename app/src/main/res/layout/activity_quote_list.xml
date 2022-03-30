@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingHorizontal="15dp"
-    android:paddingVertical="20dp">
+    android:layout_height="match_parent"
+    tools:context=".QuoteListActivity">
 
-    <TextView
-        android:id="@+id/QuoteListItem_quoteTextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/QuoteListActivity_quoteRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="명언"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold|italic"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_quote_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>
