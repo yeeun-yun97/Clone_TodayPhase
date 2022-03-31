@@ -20,7 +20,6 @@ data class Quote(var idx: Int, var text: String, var from: String = "") {
 
         fun getQuotesFromPreference(pref: SharedPreferences):MutableList<Quote>{
             val quotes = mutableListOf<Quote>()
-
             for(i in 0 until 20){
                 if(pref.contains("$i.text")){
                     val quoteText= pref.getString("$i.text","")!!

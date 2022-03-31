@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodayPhase">
         <activity
+            android:name=".QuoteEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuoteListActivity"
             android:exported="false" />
         <activity

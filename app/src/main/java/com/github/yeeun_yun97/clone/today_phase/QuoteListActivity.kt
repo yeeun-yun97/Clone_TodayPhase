@@ -14,19 +14,13 @@ class QuoteListActivity : AppCompatActivity() {
 
     //sharedPreference
     private val pref: SharedPreferences by lazy{getSharedPreferences("quotes", Context.MODE_PRIVATE)}
-    //model
-    private lateinit var quotes: MutableList<Quote>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quote_list)
 
-        quotes = Quote.getQuotesFromPreference(pref)
-        val adapter = QuoteAdapter(quotes)
-
         quoteRecyclerView.setHasFixedSize(false)
         quoteRecyclerView.layoutManager=LinearLayoutManager(this)
-        quoteRecyclerView.adapter=adapter;
+        quoteRecyclerView.adapter=QuoteAdapter(pref);
     }
 }

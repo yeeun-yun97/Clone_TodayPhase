@@ -8,9 +8,19 @@
     android:paddingVertical="20dp">
 
     <TextView
+        android:id="@+id/QuoteListItem_quoteAuthorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="작가"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/QuoteListItem_quoteTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="명언"
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -18,5 +28,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/QuoteListItem_quoteAuthorTextView" />
+
+    <ImageView
+        android:id="@+id/QuoteListItem_quoteRemoveButton"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/QuoteListItem_quoteAuthorTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/QuoteListItem_quoteAuthorTextView"
+        app:srcCompat="@drawable/ic_baseline_close_24" />
+
+    <ImageView
+        android:id="@+id/QuoteListItem_quoteEditButton"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/QuoteListItem_quoteRemoveButton"
+        app:layout_constraintEnd_toStartOf="@+id/QuoteListItem_quoteRemoveButton"
+        app:layout_constraintTop_toTopOf="@+id/QuoteListItem_quoteRemoveButton"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
