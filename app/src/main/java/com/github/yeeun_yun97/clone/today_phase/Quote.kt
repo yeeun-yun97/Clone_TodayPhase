@@ -30,6 +30,15 @@ data class Quote(var idx: Int, var text: String, var from: String = "") {
             return quotes
         }
 
+        fun getQuoteFromPreference(pref: SharedPreferences, i:Int):Quote?{
+                if(pref.contains("$i.text")){
+                    val quoteText= pref.getString("$i.text","")!!
+                    val quoteFrom=pref.getString("$i.from","")!!
+                    if(quoteText.isNotBlank()) return Quote(i,quoteText,quoteFrom)
+                }
+            return null
+        }
+
 
         fun removeQuoteFromPreference(pref: SharedPreferences, idx: Int) {
             val editor = pref.edit()
