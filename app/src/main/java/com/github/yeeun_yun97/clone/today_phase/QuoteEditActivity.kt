@@ -35,7 +35,11 @@ class QuoteEditActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            Quote.saveToPreference(pref,quote?.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+            if(quote==null){
+                Quote.addQuoteToPreference(pref,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+            }else{
+                Quote.editQuoteToPreference(pref,quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+            }
             onBackPressed()
         }
         cancelButton.setOnClickListener {
