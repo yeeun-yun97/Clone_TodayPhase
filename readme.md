@@ -5,9 +5,8 @@
 <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=black"/> <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=Kotlin&logoColor=black"/> 
 
 ## 클론 출처
-위키북스
-만들면서 배우는 코틀린 & 안드로이드 프로그래밍
-유병석
+위키북스.     
+만들면서 배우는 코틀린 & 안드로이드 프로그래밍. 유병석 지음.   
 http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158392529&orderClick=LAG&Kc=
 
 ### 따라하면서 배운 것
@@ -35,17 +34,15 @@ SharedPreference로 저장하는 방법과 불러오는 방법을 약간 수정�
 ->인덱스 없이 내부에서 숫자를 증가시키며 저장하며, 격언의 개수에 제한이 없도록 바꾸었다.     
 
 
+## 기능 소개
 
-### 기능 소개
-----
-
-#### 랜덤으로 격언 하나 보기
+### 랜덤으로 격언 하나 보기
 <img src = "https://user-images.githubusercontent.com/60867063/161300961-018cad5c-3d93-4d2e-a703-b391aaa601e6.gif" width="40%" height="40%">
 
-#### 격언 추가하기
+### 격언 추가하기
 
-#### 격언 목록 보기
+### 격언 목록 보기
 
-#### 격언 수정하기
+### 격언 수정하기
 
-#### 격언 삭제하기
+### 격언 삭제하기
