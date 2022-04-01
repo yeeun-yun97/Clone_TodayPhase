@@ -45,11 +45,15 @@ class QuoteAdapter(private val pref: SharedPreferences) :
 
     override fun getItemViewType(position: Int): Int = R.layout.item_quote_list
 
+    public fun update(){
+        dataList = getDataList()
+        notifyDataSetChanged()
+    }
+
     private fun getDataList(): MutableList<Quote> = Quote.getQuotesFromPreference(pref)
 
     private fun removeItem(position: Int) {
         Quote.removeQuoteFromPreference(pref, position)
-        dataList = getDataList()
-        notifyDataSetChanged()
+        update()
     }
 }

@@ -32,13 +32,10 @@ class QuoteEditActivity : AppCompatActivity() {
             quote = Quote.getQuoteFromPreference(pref, index)
             quoteEditText.setText(quote?.text)
             quoteAuthorEditText.setText(quote?.from)
-        } else {
-            //error!
-            onBackPressed()
         }
 
         saveButton.setOnClickListener {
-            Quote.saveToPreference(pref,quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+            Quote.saveToPreference(pref,quote?.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
             onBackPressed()
         }
         cancelButton.setOnClickListener {

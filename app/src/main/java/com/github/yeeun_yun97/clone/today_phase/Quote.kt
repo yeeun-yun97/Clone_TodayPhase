@@ -6,16 +6,26 @@ data class Quote(var idx: Int, var text: String, var from: String = "") {
     companion object {
         fun saveToPreference(
             pref: SharedPreferences,
-            idx: Int,
+            idx: Int?,
             text: String,
             from: String = ""
-        ): Quote {
-            val editor = pref.edit()
-            editor.putString("$idx.text", text)
-            editor.putString("$idx.from", from.trim())
-
-            editor.apply()
-            return Quote(idx, text, from)
+        ){
+            if(idx!=null) {
+                val editor = pref.edit()
+                editor.putString("$idx.text", text)
+                editor.putString("$idx.from", from.trim())
+                editor.apply()
+            }else{
+                for(i in 0..20){
+                    if(getQuoteFromPreference(pref,i)==null){
+                        val editor = pref.edit()
+                        editor.putString("$i.text",text)
+                        editor.putString("$i.from",from.trim())
+                        editor.apply()
+                        break
+                    }
+                }
+            }
         }
 
         fun getQuotesFromPreference(pref: SharedPreferences):MutableList<Quote>{
@@ -42,7 +52,6 @@ data class Quote(var idx: Int, var text: String, var from: String = "") {
 
         fun removeQuoteFromPreference(pref: SharedPreferences, idx: Int) {
             val editor = pref.edit()
-
             editor.remove("$idx.text")
             editor.remove("$idx.from")
             editor.apply()
