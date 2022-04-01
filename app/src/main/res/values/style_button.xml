@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonBase" parent="Widget.AppCompat.Button">
+        <item name="android:elevation">4dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="PrimaryButton" parent="ButtonBase">
+        <item name="android:background">@drawable/button_primary</item>
+        <item name="android:textColor">@color/sj_white</item>
+    </style>
+
+    <style name="SecondaryButton" parent="ButtonBase">
+        <item name="android:background">@drawable/button_secondary</item>
+        <item name="android:textColor">@color/sj_dark_purple</item>
+    </style>
+
+</resources>
