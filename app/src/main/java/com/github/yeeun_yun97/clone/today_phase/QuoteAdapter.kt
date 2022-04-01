@@ -1,6 +1,5 @@
 package com.github.yeeun_yun97.clone.today_phase
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class QuoteAdapter(private val pref: SharedPreferences) :
+class QuoteAdapter(private val pref: SharedPreferences, private val editOperation: (Int)->Unit) :
     RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>() {
     private var dataList: MutableList<Quote> = getDataList()
 
-    class QuoteViewHolder(private val itemView: View, private val removeOperation : (Int)->Unit) : RecyclerView.ViewHolder(itemView) {
+    class QuoteViewHolder(private val itemView: View, private val removeOperation: (Int) -> Unit, private val editOperation: (Int)-> Unit) :
+        RecyclerView.ViewHolder(itemView) {
         lateinit var quote: Quote;
         val quoteText = itemView.findViewById<TextView>(R.id.QuoteListItem_quoteTextView)
         val quoteAuthorText =
@@ -26,15 +26,15 @@ class QuoteAdapter(private val pref: SharedPreferences) :
             this.quote = q
             quoteText.setText(quote.text)
             quoteAuthorText.setText(quote.from)
-            quoteRemoveButton.setOnClickListener {removeOperation(q.idx)}
-            quoteEditButton.setOnClickListener {}
+            quoteRemoveButton.setOnClickListener { removeOperation(q.idx) }
+            quoteEditButton.setOnClickListener { editOperation(q.idx)}
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        var removeOperation : (Int) -> Unit = ::removeItem
-        return QuoteViewHolder(view,removeOperation)
+        var removeOperation: (Int) -> Unit = ::removeItem
+        return QuoteViewHolder(view, removeOperation, editOperation)
     }
 
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
@@ -45,7 +45,7 @@ class QuoteAdapter(private val pref: SharedPreferences) :
 
     override fun getItemViewType(position: Int): Int = R.layout.item_quote_list
 
-    public fun update(){
+    fun update() {
         dataList = getDataList()
         notifyDataSetChanged()
     }

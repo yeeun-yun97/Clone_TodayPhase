@@ -16,7 +16,7 @@ class QuoteListActivity : AppCompatActivity() {
     private val quoteRecyclerView: RecyclerView by lazy { findViewById(R.id.QuoteListActivity_quoteRecyclerView) }
     private val createQuoteButton: FloatingActionButton by lazy { findViewById(R.id.QuoteListActivity_createQuoteButton) }
 
-    private val quoteAdapter by lazy {QuoteAdapter(pref)}
+    private val quoteAdapter by lazy {QuoteAdapter(pref,::startEditActivity)}
     //sharedPreference
     private val pref: SharedPreferences by lazy {
         getSharedPreferences(
@@ -42,5 +42,9 @@ class QuoteListActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         quoteAdapter.update()
+    }
+
+    fun startEditActivity(index: Int){
+        startActivity(Intent(this,QuoteEditActivity::class.java).apply { putExtra("idx",index) })
     }
 }

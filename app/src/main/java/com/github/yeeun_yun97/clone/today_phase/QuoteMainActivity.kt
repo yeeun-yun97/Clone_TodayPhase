@@ -15,7 +15,6 @@ class QuoteMainActivity : AppCompatActivity() {
     private val quoteTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteTextView) }
     private val quoteAuthorTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteAuthorTextView) }
     private val viewQuoteButton: Button by lazy { findViewById(R.id.QuoteMainActivity_viewQuoteButton) }
-    private val editQuoteTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_editQuoteTextView) }
 
     //sharedPreference
     private val pref: SharedPreferences by lazy {
@@ -75,13 +74,6 @@ class QuoteMainActivity : AppCompatActivity() {
             var randomQuote = quotes[randomIndex]
             quoteTextView.setText(randomQuote.text)
             quoteAuthorTextView.setText(randomQuote.from)
-            editQuoteTextView.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this,
-                        QuoteEditActivity::class.java
-                    ).apply { putExtra("idx", randomQuote.idx) })
-            }
         }
     }
 
