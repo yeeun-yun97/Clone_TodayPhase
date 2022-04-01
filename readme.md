@@ -1,5 +1,5 @@
 # Clone_TodayPhase
-### SharedPreference를 사용하여 여러 개의 격언을 저장하고(CRUD 가능), <br>그 중 한 개를 랜덤을 보여주는 안드로이드 애플리케이션
+### SharedPreference를 사용하여 여러 개의 격언을 저장하고(CRUD 가능), <br>그 중 한 개를 랜덤으로 보여주는 안드로이드 애플리케이션
 
 ## 스택
 <img src="https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=Android&logoColor=black"/> <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=Kotlin&logoColor=black"/> 
