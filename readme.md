@@ -50,3 +50,7 @@ SharedPreference로 저장하는 방법과 불러오는 방법을 약간 수정�
 
 ### 격언 삭제하기
 ![Apr-02-2022 19-20-44](https://user-images.githubusercontent.com/60867063/161378823-6f87fc1f-abeb-48a9-8ebd-b067a848bc6e.gif)
+
+### 격언 공유하기
+![Apr-02-2022 19-51-46](https://user-images.githubusercontent.com/60867063/161379962-6468c7ea-b155-4e50-a0d3-f2bb754330ce.gif)
+
