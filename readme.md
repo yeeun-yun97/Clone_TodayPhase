@@ -37,12 +37,16 @@ SharedPreference로 저장하는 방법과 불러오는 방법을 약간 수정�
 ## 기능 소개
 
 ### 랜덤으로 격언 하나 보기
-<img src = "https://user-images.githubusercontent.com/60867063/161300961-018cad5c-3d93-4d2e-a703-b391aaa601e6.gif" width="40%" height="40%">
-
-### 격언 추가하기
+![Apr-02-2022 19-13-14](https://user-images.githubusercontent.com/60867063/161378841-e3d5b611-a6c8-410b-971a-2faf7096d3c7.gif)
 
 ### 격언 목록 보기
+![Apr-02-2022 19-12-40](https://user-images.githubusercontent.com/60867063/161378693-ee51f422-1048-4bf9-94e9-1711f67fed43.gif)
+
+### 격언 추가하기
+![Apr-02-2022 19-16-28](https://user-images.githubusercontent.com/60867063/161378688-c74234c1-97a6-4bc8-95a6-26e5ff811e1c.gif)
 
 ### 격언 수정하기
+![Apr-02-2022 19-20-07](https://user-images.githubusercontent.com/60867063/161378803-ffef8b8f-7df4-4c43-92e1-f0009225368d.gif)
 
 ### 격언 삭제하기
+![Apr-02-2022 19-20-44](https://user-images.githubusercontent.com/60867063/161378823-6f87fc1f-abeb-48a9-8ebd-b067a848bc6e.gif)
