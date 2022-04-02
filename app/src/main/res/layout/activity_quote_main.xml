@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     tools:context=".QuoteMainActivity">
 
     <TextView
         android:id="@+id/QuoteMainActivity_quoteTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:text="명언 문구"
         android:textColor="@color/sj_black"
         android:textSize="20sp"
@@ -25,18 +25,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="작가"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteTextView"
         app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteTextView" />
 
     <Button
         android:id="@+id/QuoteMainActivity_viewQuoteButton"
+        style="@style/PrimaryButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
         android:text="목록 보기"
-        style="@style/PrimaryButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/QuoteMainActivity_quoteTextView"
         app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteAuthorTextView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <ImageView
+        android:id="@+id/QuoteMainActivity_shareButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/QuoteMainActivity_viewQuoteButton"
+        app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteAuthorTextView"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/QuoteMainActivity_viewQuoteButton"
+        app:srcCompat="@drawable/ic_baseline_share_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

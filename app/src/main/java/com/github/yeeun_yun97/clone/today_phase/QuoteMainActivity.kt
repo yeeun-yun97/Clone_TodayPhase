@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import java.util.*
 
@@ -15,6 +16,7 @@ class QuoteMainActivity : AppCompatActivity() {
     private val quoteTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteTextView) }
     private val quoteAuthorTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteAuthorTextView) }
     private val viewQuoteButton: Button by lazy { findViewById(R.id.QuoteMainActivity_viewQuoteButton) }
+    private val shareButton: ImageView by lazy { findViewById(R.id.QuoteMainActivity_shareButton) }
 
     //sharedPreference
     private val pref: SharedPreferences by lazy {
@@ -25,14 +27,14 @@ class QuoteMainActivity : AppCompatActivity() {
     }
 
     //model
-    private lateinit var quotes: MutableList<Quote>
+    private val quotes: MutableList<Quote> by lazy { Quote.getQuotesFromPreference(pref) }
+    private val quote: Quote by lazy { randomQuote() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quote_main)
         initQuotes()
-        quotes = Quote.getQuotesFromPreference(pref)
-        this.randomQuote()
+        setQuote()
         viewQuoteButton.setOnClickListener {
             startActivity(
                 Intent(
@@ -40,6 +42,17 @@ class QuoteMainActivity : AppCompatActivity() {
                     QuoteListActivity::class.java
                 )
             )
+        }
+        shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_TITLE, "힘이 되는 명언")
+                putExtra(Intent.EXTRA_SUBJECT, "힘이 되는 명언")
+                putExtra(Intent.EXTRA_TEXT, "${quote.text}\n출처 : ${quote.from}")
+                type = "text/plain"
+            }
+            val chooser = Intent.createChooser(intent, "명언 공유")
+            it.context.startActivity(chooser)
+
         }
     }
 
@@ -66,15 +79,18 @@ class QuoteMainActivity : AppCompatActivity() {
 
     }
 
-    private fun randomQuote() {
+    private fun setQuote() {
+        quoteTextView.setText(quote.text)
+        quoteAuthorTextView.setText(quote.from)
+    }
+
+    private fun randomQuote(): Quote {
         if (quotes.isEmpty()) {
-            quoteTextView.setText("아직 명언 데이터가 없습니다.")
-            quoteAuthorTextView.setText("-")
+            return Quote(-1, "아직 명언 데이터가 없습니다.", "")
         } else {
-            var randomIndex = Random().nextInt(quotes.size)
-            var randomQuote = quotes[randomIndex]
-            quoteTextView.setText(randomQuote.text)
-            quoteAuthorTextView.setText(randomQuote.from)
+            val randomIndex = Random().nextInt(quotes.size)
+            val randomQuote = quotes[randomIndex]
+            return randomQuote
         }
     }
 
