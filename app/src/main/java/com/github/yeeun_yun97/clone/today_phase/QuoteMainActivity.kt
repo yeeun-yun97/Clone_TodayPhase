@@ -5,93 +5,59 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
+import android.view.View
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.github.yeeun_yun97.clone.today_phase.databinding.ActivityQuoteMainBinding
 import java.util.*
 
 class QuoteMainActivity : AppCompatActivity() {
-
-    //view comps
-    private val quoteTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteTextView) }
-    private val quoteAuthorTextView: TextView by lazy { findViewById(R.id.QuoteMainActivity_quoteAuthorTextView) }
-    private val viewQuoteButton: Button by lazy { findViewById(R.id.QuoteMainActivity_viewQuoteButton) }
-    private val shareButton: ImageView by lazy { findViewById(R.id.QuoteMainActivity_shareButton) }
-
-    //sharedPreference
-    private val pref: SharedPreferences by lazy {
-        getSharedPreferences(
-            "quotes",
-            Context.MODE_PRIVATE
-        )
+    //data binding
+    private val binding: ActivityQuoteMainBinding by lazy {
+        DataBindingUtil.setContentView(this, R.layout.activity_quote_main)
     }
 
     //model
-    private val quotes: MutableList<Quote> by lazy { Quote.getQuotesFromPreference(pref) }
-    private val quote: Quote by lazy { randomQuote() }
+    private lateinit var quote: Quote
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quote_main)
-        initQuotes()
-        setQuote()
-        viewQuoteButton.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    QuoteListActivity::class.java
-                )
-            )
-        }
-        shareButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SEND).apply {
-                putExtra(Intent.EXTRA_TITLE, "힘이 되는 명언")
-                putExtra(Intent.EXTRA_SUBJECT, "힘이 되는 명언")
-                putExtra(Intent.EXTRA_TEXT, "${quote.text}\n출처 : ${quote.from}")
-                type = "text/plain"
-            }
-            val chooser = Intent.createChooser(intent, "명언 공유")
-            it.context.startActivity(chooser)
 
-        }
+        //이거 activity 말고 application에서 하게 나중에 수정하는 게 좋을 것 같음.
+        Quote.pref = getSharedPreferences("quotes", Context.MODE_PRIVATE)
+
+        initQuotes()
+        quote = Quote.readRandomQuote()
+        binding.quote = quote
     }
 
     override fun onRestart() {
         super.onRestart()
-        randomQuote()
+        quote = Quote.readRandomQuote()
+        binding.quote = quote
     }
 
-    private fun initQuotes() {
-        if (!pref.getBoolean("init", false)) {
-            Quote.addQuoteToPreference(pref, "창조적인 삶을 살려면 내가 틀릴지도 모른다는 공포를 버려야 한다.")
-            Quote.addQuoteToPreference(pref, "성공한 사람이 되려고 노력하기보다 가치있는 사람이 되려고 노력하라.", "알버트 아인슈타인")
-            Quote.addQuoteToPreference(pref, "괴로운 시련처럼 보이는 것이 뜻밖의 좋은 일일 때가 많다.", "오스카 와일드")
-            Quote.addQuoteToPreference(pref, "추구할 수 있는 용기가 있다면 우리의 모든 꿈은 이뤄질 수 있다.", "월트 디즈니")
-            Quote.addQuoteToPreference(
-                pref,
-                "실패에서부터 성공을 만들어 내라. 좌절과 실패는 성공으로 가는 가장 확실한 디딤돌이다.",
-                "데일 카네기"
+    private fun initQuotes() =Quote.initQuotes()
+
+
+    fun startListActivity(view: View) {
+        startActivity(
+            Intent(
+                this,
+                QuoteListActivity::class.java
             )
-            val editor = pref.edit()
-            editor.putBoolean("init", true)
-            editor.apply()
-        }
-
+        )
     }
 
-    private fun setQuote() {
-        quoteTextView.setText(quote.text)
-        quoteAuthorTextView.setText(quote.from)
-    }
-
-    private fun randomQuote(): Quote {
-        if (quotes.isEmpty()) {
-            return Quote(-1, "아직 명언 데이터가 없습니다.", "")
-        } else {
-            val randomIndex = Random().nextInt(quotes.size)
-            val randomQuote = quotes[randomIndex]
-            return randomQuote
+    fun shareQuote(view: View) {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TITLE, "힘이 되는 명언")
+            putExtra(Intent.EXTRA_SUBJECT, "힘이 되는 명언")
+            putExtra(Intent.EXTRA_TEXT, "${quote.text}\n출처 : ${quote.from}")
+            type = "text/plain"
         }
+        val chooser = Intent.createChooser(intent, "명언 공유")
+        view.context.startActivity(chooser)
     }
 
 }

@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".QuoteMainActivity">
+    <data>
+        <variable
+            name="quote"
+            type="com.github.yeeun_yun97.clone.today_phase.Quote" />
+    </data>
 
-    <TextView
-        android:id="@+id/QuoteMainActivity_quoteTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="명언 문구"
-        android:textColor="@color/sj_black"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/QuoteMainActivity_quoteAuthorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="작가"
-        app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteTextView"
-        app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteTextView" />
+        <TextView
+            android:id="@+id/QuoteMainActivity_quoteTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@{quote.text}"
+            android:textColor="@color/sj_black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/QuoteMainActivity_viewQuoteButton"
-        style="@style/PrimaryButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="5dp"
-        android:text="목록 보기"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/QuoteMainActivity_quoteTextView"
-        app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteAuthorTextView" />
+        <TextView
+            android:id="@+id/QuoteMainActivity_quoteAuthorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{quote.from}"
+            app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteTextView" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        <Button
+            android:id="@+id/QuoteMainActivity_viewQuoteButton"
+            style="@style/PrimaryButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
+            android:onClick="startListActivity"
+            android:text="목록 보기"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/QuoteMainActivity_quoteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/QuoteMainActivity_quoteAuthorTextView" />
 
-    <ImageView
-        android:id="@+id/QuoteMainActivity_shareButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/QuoteMainActivity_viewQuoteButton"
-        app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteAuthorTextView"
-        app:layout_constraintStart_toEndOf="@id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/QuoteMainActivity_viewQuoteButton"
-        app:srcCompat="@drawable/ic_baseline_share_24" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/QuoteMainActivity_shareButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:onClick="shareQuote"
+            app:layout_constraintBottom_toBottomOf="@+id/QuoteMainActivity_viewQuoteButton"
+            app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteAuthorTextView"
+            app:layout_constraintStart_toEndOf="@id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/QuoteMainActivity_viewQuoteButton"
+            app:srcCompat="@drawable/ic_baseline_share_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
