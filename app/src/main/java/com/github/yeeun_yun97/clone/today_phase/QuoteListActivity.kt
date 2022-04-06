@@ -16,7 +16,9 @@ class QuoteListActivity : AppCompatActivity() {
     private val quoteRecyclerView: RecyclerView by lazy { findViewById(R.id.QuoteListActivity_quoteRecyclerView) }
     private val createQuoteButton: FloatingActionButton by lazy { findViewById(R.id.QuoteListActivity_createQuoteButton) }
 
+    //adapter
     private val quoteAdapter by lazy {QuoteAdapter(pref,::startEditActivity)}
+
     //sharedPreference
     private val pref: SharedPreferences by lazy {
         getSharedPreferences(

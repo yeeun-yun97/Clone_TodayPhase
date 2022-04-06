@@ -29,16 +29,16 @@ class QuoteEditActivity : AppCompatActivity() {
         val intent = intent
         val index = intent.getIntExtra("idx", -1)
         if (index != -1) {
-            quote = Quote.getQuoteFromPreference(pref, index)
+            quote = Quote.readQuoteByIndex(pref, index)
             quoteEditText.setText(quote?.text)
             quoteAuthorEditText.setText(quote?.from)
         }
 
         saveButton.setOnClickListener {
             if(quote==null){
-                Quote.addQuoteToPreference(pref,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+                Quote.createQuote(pref,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
             }else{
-                Quote.editQuoteToPreference(pref,quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+                Quote.updateQuote(pref,quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
             }
             onBackPressed()
         }

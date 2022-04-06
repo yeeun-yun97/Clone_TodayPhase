@@ -50,10 +50,10 @@ class QuoteAdapter(private val pref: SharedPreferences, private val editOperatio
         notifyDataSetChanged()
     }
 
-    private fun getDataList(): MutableList<Quote> = Quote.getQuotesFromPreference(pref)
+    private fun getDataList(): MutableList<Quote> = Quote.readAllQuotes(pref)
 
     private fun removeItem(position: Int) {
-        Quote.removeQuoteFromPreference(pref, position)
+        Quote.deleteQuoteByIndex(pref, position)
         update()
     }
 }
