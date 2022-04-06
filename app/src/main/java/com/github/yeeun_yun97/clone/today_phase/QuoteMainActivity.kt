@@ -22,10 +22,6 @@ class QuoteMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //이거 activity 말고 application에서 하게 나중에 수정하는 게 좋을 것 같음.
-        Quote.pref = getSharedPreferences("quotes", Context.MODE_PRIVATE)
-
         initQuotes()
         quote = Quote.readRandomQuote()
         binding.quote = quote
