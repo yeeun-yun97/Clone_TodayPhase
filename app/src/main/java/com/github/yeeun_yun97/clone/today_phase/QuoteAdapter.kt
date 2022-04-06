@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class QuoteAdapter(private val pref: SharedPreferences, private val editOperation: (Int)->Unit) :
+class QuoteAdapter(private val editOperation: (Int)->Unit) :
     RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>() {
     private var dataList: MutableList<Quote> = getDataList()
 
-    class QuoteViewHolder(private val itemView: View, private val removeOperation: (Int) -> Unit, private val editOperation: (Int)-> Unit) :
+    class QuoteViewHolder(itemView: View, private val removeOperation: (Int) -> Unit, private val editOperation: (Int)-> Unit) :
         RecyclerView.ViewHolder(itemView) {
         lateinit var quote: Quote;
         val quoteText = itemView.findViewById<TextView>(R.id.QuoteListItem_quoteTextView)
@@ -50,10 +50,10 @@ class QuoteAdapter(private val pref: SharedPreferences, private val editOperatio
         notifyDataSetChanged()
     }
 
-    private fun getDataList(): MutableList<Quote> = Quote.readAllQuotes(pref)
+    private fun getDataList(): MutableList<Quote> = Quote.readAllQuotes()
 
     private fun removeItem(position: Int) {
-        Quote.deleteQuoteByIndex(pref, position)
+        Quote.deleteQuoteByIndex(position)
         update()
     }
 }

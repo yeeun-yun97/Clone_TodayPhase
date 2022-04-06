@@ -8,13 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 
 class QuoteEditActivity : AppCompatActivity() {
-    //sharedPreference
-    private val pref: SharedPreferences by lazy {
-        getSharedPreferences(
-            "quotes",
-            Context.MODE_PRIVATE
-        )
-    }
 
     private val quoteEditText: EditText by lazy { findViewById(R.id.QuoteEditActivity_QuoteEdtiText) }
     private val quoteAuthorEditText: EditText by lazy { findViewById(R.id.QuoteEditActivity_QuoteAuthorEditText) }
@@ -29,16 +22,16 @@ class QuoteEditActivity : AppCompatActivity() {
         val intent = intent
         val index = intent.getIntExtra("idx", -1)
         if (index != -1) {
-            quote = Quote.readQuoteByIndex(pref, index)
+            quote = Quote.readQuoteByIndex( index)
             quoteEditText.setText(quote?.text)
             quoteAuthorEditText.setText(quote?.from)
         }
 
         saveButton.setOnClickListener {
             if(quote==null){
-                Quote.createQuote(pref,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+                Quote.createQuote(quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
             }else{
-                Quote.updateQuote(pref,quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
+                Quote.updateQuote(quote!!.idx,quoteEditText.text.toString(),quoteAuthorEditText.text.toString())
             }
             onBackPressed()
         }

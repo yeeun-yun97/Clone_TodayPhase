@@ -17,15 +17,7 @@ class QuoteListActivity : AppCompatActivity() {
     private val createQuoteButton: FloatingActionButton by lazy { findViewById(R.id.QuoteListActivity_createQuoteButton) }
 
     //adapter
-    private val quoteAdapter by lazy {QuoteAdapter(pref,::startEditActivity)}
-
-    //sharedPreference
-    private val pref: SharedPreferences by lazy {
-        getSharedPreferences(
-            "quotes",
-            Context.MODE_PRIVATE
-        )
-    }
+    private val quoteAdapter by lazy {QuoteAdapter(::startEditActivity)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
