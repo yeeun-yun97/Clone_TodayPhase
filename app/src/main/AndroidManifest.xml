@@ -3,20 +3,20 @@
     package="com.github.yeeun_yun97.clone.today_phase">
 
     <application
-        android:allowBackup="true"
+        android:name="com.github.yeeun_yun97.clone.today_phase.custom_context.TodayPhaseApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TodayPhase">
         <activity
-            android:name=".QuoteEditActivity"
+            android:name=".ui.QuoteEditActivity"
             android:exported="false" />
         <activity
-            android:name=".QuoteListActivity"
+            android:name=".ui.QuoteListActivity"
             android:exported="false" />
         <activity
-            android:name=".QuoteMainActivity"
+            android:name=".ui.QuoteMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

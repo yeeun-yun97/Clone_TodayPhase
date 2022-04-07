@@ -2,11 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".QuoteMainActivity">
+    tools:context=".ui.QuoteMainActivity">
     <data>
         <variable
             name="quote"
-            type="com.github.yeeun_yun97.clone.today_phase.Quote" />
+            type="com.github.yeeun_yun97.clone.today_phase.model.Quote" />
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="5dp"
-            android:onClick="startListActivity"
+            android:onClick="@{listener.onClick}"
             android:text="목록 보기"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/QuoteMainActivity_quoteTextView"
@@ -60,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
-            android:onClick="shareQuote"
+            android:onClick="@{listener.onClick}"
             app:layout_constraintBottom_toBottomOf="@+id/QuoteMainActivity_viewQuoteButton"
             app:layout_constraintEnd_toEndOf="@+id/QuoteMainActivity_quoteAuthorTextView"
             app:layout_constraintStart_toEndOf="@id/guideline3"

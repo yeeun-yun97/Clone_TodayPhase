@@ -1,59 +1,60 @@
 package com.github.yeeun_yun97.clone.today_phase
 
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.yeeun_yun97.clone.today_phase.databinding.ItemQuoteListBinding
+import com.github.yeeun_yun97.clone.today_phase.model.Quote
 
-class QuoteAdapter(private val editOperation: (Int)->Unit) :
+class QuoteAdapter(private val editOperation: (Int) -> Unit) :
     RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>() {
-    private var dataList: MutableList<Quote> = getDataList()
-
-    class QuoteViewHolder(itemView: View, private val removeOperation: (Int) -> Unit, private val editOperation: (Int)-> Unit) :
-        RecyclerView.ViewHolder(itemView) {
-        lateinit var quote: Quote;
-        val quoteText = itemView.findViewById<TextView>(R.id.QuoteListItem_quoteTextView)
-        val quoteAuthorText =
-            itemView.findViewById<TextView>(R.id.QuoteListItem_quoteAuthorTextView)
-        val quoteRemoveButton =
-            itemView.findViewById<ImageView>(R.id.QuoteListItem_quoteRemoveButton)
-        val quoteEditButton = itemView.findViewById<ImageView>(R.id.QuoteListItem_quoteEditButton)
-
-        fun bind(position: Int, q: Quote) {
-            this.quote = q
-            quoteText.setText(quote.text)
-            quoteAuthorText.setText(quote.from)
-            quoteRemoveButton.setOnClickListener { removeOperation(q.idx) }
-            quoteEditButton.setOnClickListener { editOperation(q.idx)}
-        }
-    }
+    //model
+    private var dataList: MutableList<Quote> = Quote.readAllQuotes()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        var removeOperation: (Int) -> Unit = ::removeItem
-        return QuoteViewHolder(view, removeOperation, editOperation)
-    }
-
-    override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
-        holder.bind(position, dataList[position])
+        var binding: ItemQuoteListBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_quote_list,
+            parent,
+            false
+        )
+        return QuoteViewHolder(binding, ::removeItem, editOperation)
     }
 
     override fun getItemCount(): Int = dataList.size
 
-    override fun getItemViewType(position: Int): Int = R.layout.item_quote_list
+    override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
+        holder.bind(dataList[position])
+    }
 
-    fun update() {
-        dataList = getDataList()
+    fun refreshDataSet() {
+        dataList = Quote.readAllQuotes()
         notifyDataSetChanged()
     }
 
-    private fun getDataList(): MutableList<Quote> = Quote.readAllQuotes()
-
-    private fun removeItem(position: Int) {
-        Quote.deleteQuoteByIndex(position)
-        update()
+    private fun removeItem(idx: Int) {
+        Quote.deleteQuoteByIndex(idx)
+        refreshDataSet()
     }
+
+    /* inner class ViewHolder */
+    class QuoteViewHolder(
+        private val binding: ItemQuoteListBinding,
+        private val removeOperation: (Int) -> Unit,
+        private val editOperation: (Int) -> Unit
+    ) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(quote: Quote) {
+            this.binding.quote = quote
+            this.binding.onClick = View.OnClickListener {
+                when (it.id) {
+                    R.id.QuoteListItem_quoteEditButton -> editOperation(quote.idx)
+                    R.id.QuoteListItem_quoteRemoveButton -> removeOperation(quote.idx)
+                }
+            }
+        }
+    }
+
 }
