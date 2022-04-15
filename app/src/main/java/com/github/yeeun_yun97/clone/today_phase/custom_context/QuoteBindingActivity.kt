@@ -3,10 +3,10 @@ package com.github.yeeun_yun97.clone.today_phase.custom_context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
-abstract class QuoteBindingActivity<Binding : ViewDataBinding> : AppCompatActivity() {
-    protected val binding: Binding by lazy { DataBindingUtil.setContentView(this, getLayoutId()) }
+abstract class QuoteBindingActivity<T : ViewBinding> : AppCompatActivity() {
+    protected val binding: T by lazy { DataBindingUtil.setContentView(this, getLayoutId()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,7 +14,7 @@ abstract class QuoteBindingActivity<Binding : ViewDataBinding> : AppCompatActivi
     }
 
     /**
-     * onCreate에서 한번만 설정하면 되는 Binding variable들을 여기서 설정한다.
+     * onCreate에서 딱 한번 Binding variable 설정하는 메소드.
      */
     protected abstract fun setBindingVariables()
 

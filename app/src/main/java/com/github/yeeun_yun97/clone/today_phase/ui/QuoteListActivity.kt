@@ -2,7 +2,6 @@ package com.github.yeeun_yun97.clone.today_phase.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.yeeun_yun97.clone.today_phase.QuoteAdapter
 import com.github.yeeun_yun97.clone.today_phase.R
@@ -15,7 +14,7 @@ class QuoteListActivity : QuoteBindingActivity<ActivityQuoteListBinding>() {
     private lateinit var quoteAdapter : QuoteAdapter
 
     override fun setBindingVariables() {
-        binding.listener = View.OnClickListener { startEditActivity() }
+
     }
 
     override fun getLayoutId(): Int = R.layout.activity_quote_list
@@ -29,6 +28,9 @@ class QuoteListActivity : QuoteBindingActivity<ActivityQuoteListBinding>() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(false)
         recyclerView.adapter = quoteAdapter;
+
+        val createQuoteButton = binding.QuoteListActivityCreateQuoteButton
+        createQuoteButton.setOnClickListener { startEditActivity() }
     }
 
     override fun onStart() {
