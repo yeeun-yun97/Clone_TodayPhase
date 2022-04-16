@@ -52,6 +52,7 @@ class QuoteMainActivity : QuoteDataBindingActivity<ActivityQuoteMainBinding>() {
             type = "text/plain"
         }
         val chooser = Intent.createChooser(intent, "명언 공유")
-        view.context.startActivity(chooser)
+        if(intent.resolveActivity(packageManager)!=null)
+            view.context.startActivity(chooser)
     }
 }
