@@ -1,15 +1,24 @@
-package com.github.yeeun_yun97.clone.today_phase.ui
+package com.github.yeeun_yun97.clone.today_phase.ui.activity
 
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import com.github.yeeun_yun97.clone.today_phase.R
-import com.github.yeeun_yun97.clone.today_phase.custom_context.QuoteBindingActivity
 import com.github.yeeun_yun97.clone.today_phase.databinding.ActivityQuoteEditBinding
-import com.github.yeeun_yun97.clone.today_phase.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.data.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.ui.activity.basic.QuoteDataBindingActivity
 
-class QuoteEditActivity : QuoteBindingActivity<ActivityQuoteEditBinding>() {
+class QuoteEditActivity : QuoteDataBindingActivity<ActivityQuoteEditBinding>() {
     private lateinit var quote: Quote
 
-    override fun setBindingVariables() {
+    override fun getLayoutId(): Int = R.layout.activity_quote_edit
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setBindingVariables()
+    }
+
+    fun setBindingVariables() {
         val index = intent.getIntExtra("idx", -1)
         quote =
             if (index == -1) Quote(index, "", "")       //mode create new
@@ -23,8 +32,6 @@ class QuoteEditActivity : QuoteBindingActivity<ActivityQuoteEditBinding>() {
             }
         }
     }
-
-    override fun getLayoutId(): Int = R.layout.activity_quote_edit
 
     private fun save() {
         if (quote.idx == -1) {              //create new
@@ -45,6 +52,5 @@ class QuoteEditActivity : QuoteBindingActivity<ActivityQuoteEditBinding>() {
     private fun cancel() {
         onBackPressed()
     }
-
 
 }

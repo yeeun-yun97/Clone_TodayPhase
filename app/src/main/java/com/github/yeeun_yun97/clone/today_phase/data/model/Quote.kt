@@ -1,4 +1,4 @@
-package com.github.yeeun_yun97.clone.today_phase.model
+package com.github.yeeun_yun97.clone.today_phase.data.model
 
 import android.content.SharedPreferences
 import android.util.Log

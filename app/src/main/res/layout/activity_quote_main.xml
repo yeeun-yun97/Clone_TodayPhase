@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.QuoteMainActivity">
+    tools:context=".ui.activity.QuoteMainActivity">
     <data>
         <variable
             name="quote"
-            type="com.github.yeeun_yun97.clone.today_phase.model.Quote" />
+            type="com.github.yeeun_yun97.clone.today_phase.data.model.Quote"  />
         <variable
             name="listener"
             type="android.view.View.OnClickListener" />

@@ -6,7 +6,7 @@
 
         <variable
             name="quote"
-            type="com.github.yeeun_yun97.clone.today_phase.model.Quote" />
+            type="com.github.yeeun_yun97.clone.today_phase.data.model.Quote" />
 
         <variable
             name="onClick"

@@ -1,8 +1,8 @@
-package com.github.yeeun_yun97.clone.today_phase.custom_context
+package com.github.yeeun_yun97.clone.today_phase.application
 
 import android.app.Application
 import android.content.Context
-import com.github.yeeun_yun97.clone.today_phase.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.data.model.Quote
 
 class TodayPhaseApplication : Application() {
     override fun onCreate() {

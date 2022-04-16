@@ -1,12 +1,13 @@
-package com.github.yeeun_yun97.clone.today_phase
+package com.github.yeeun_yun97.clone.today_phase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.github.yeeun_yun97.clone.today_phase.R
 import com.github.yeeun_yun97.clone.today_phase.databinding.ItemQuoteListBinding
-import com.github.yeeun_yun97.clone.today_phase.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.data.model.Quote
 
 class QuoteAdapter(private val editOperation: (Int) -> Unit) :
     RecyclerView.Adapter<QuoteAdapter.QuoteViewHolder>() {

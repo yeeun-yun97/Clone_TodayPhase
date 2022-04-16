@@ -1,21 +1,21 @@
-package com.github.yeeun_yun97.clone.today_phase.ui
+package com.github.yeeun_yun97.clone.today_phase.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.github.yeeun_yun97.clone.today_phase.R
-import com.github.yeeun_yun97.clone.today_phase.custom_context.QuoteBindingActivity
 import com.github.yeeun_yun97.clone.today_phase.databinding.ActivityQuoteMainBinding
-import com.github.yeeun_yun97.clone.today_phase.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.data.model.Quote
+import com.github.yeeun_yun97.clone.today_phase.ui.activity.basic.QuoteDataBindingActivity
 
-class QuoteMainActivity : QuoteBindingActivity<ActivityQuoteMainBinding>() {
+class QuoteMainActivity : QuoteDataBindingActivity<ActivityQuoteMainBinding>() {
 
     //model
     private lateinit var quote: Quote
 
     override fun getLayoutId(): Int = R.layout.activity_quote_main
 
-    override fun setBindingVariables() {
+    private fun setBindingVariables() {
         binding.listener = View.OnClickListener {
             when (it.id) {
                 R.id.QuoteMainActivity_shareButton -> shareQuote(it)
@@ -26,6 +26,7 @@ class QuoteMainActivity : QuoteBindingActivity<ActivityQuoteMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setBindingVariables()
         refreshBindingVariables()
     }
 
@@ -34,7 +35,7 @@ class QuoteMainActivity : QuoteBindingActivity<ActivityQuoteMainBinding>() {
         refreshBindingVariables()
     }
 
-    fun refreshBindingVariables() {
+    private fun refreshBindingVariables() {
         quote = Quote.readRandomQuote()
         binding.quote = quote
     }
