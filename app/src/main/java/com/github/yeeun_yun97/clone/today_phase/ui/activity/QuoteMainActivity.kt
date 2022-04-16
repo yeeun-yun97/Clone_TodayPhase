@@ -40,11 +40,11 @@ class QuoteMainActivity : QuoteDataBindingActivity<ActivityQuoteMainBinding>() {
         binding.quote = quote
     }
 
-    fun startListActivity() {
+    private fun startListActivity() {
         startActivity(Intent(this, QuoteListActivity::class.java))
     }
 
-    fun shareQuote(view: View) {
+    private fun shareQuote(view: View) {
         val intent = Intent(Intent.ACTION_SEND).apply {
             putExtra(Intent.EXTRA_TITLE, "힘이 되는 명언")
             putExtra(Intent.EXTRA_SUBJECT, "힘이 되는 명언")

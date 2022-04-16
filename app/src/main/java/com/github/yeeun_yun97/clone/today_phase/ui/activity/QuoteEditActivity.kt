@@ -1,7 +1,6 @@
 package com.github.yeeun_yun97.clone.today_phase.ui.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import com.github.yeeun_yun97.clone.today_phase.R
 import com.github.yeeun_yun97.clone.today_phase.databinding.ActivityQuoteEditBinding
@@ -18,7 +17,7 @@ class QuoteEditActivity : QuoteDataBindingActivity<ActivityQuoteEditBinding>() {
         setBindingVariables()
     }
 
-    fun setBindingVariables() {
+    private fun setBindingVariables() {
         val index = intent.getIntExtra("idx", -1)
         quote =
             if (index == -1) Quote(index, "", "")       //mode create new

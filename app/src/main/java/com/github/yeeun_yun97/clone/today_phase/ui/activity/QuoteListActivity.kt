@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.yeeun_yun97.clone.today_phase.ui.adapter.QuoteAdapter
-import com.github.yeeun_yun97.clone.today_phase.R
 import com.github.yeeun_yun97.clone.today_phase.databinding.ActivityQuoteListBinding
 
 class QuoteListActivity : AppCompatActivity() {
@@ -13,8 +12,6 @@ class QuoteListActivity : AppCompatActivity() {
 
     //adapter
     private lateinit var quoteAdapter : QuoteAdapter
-
-    private fun getLayoutId(): Int = R.layout.activity_quote_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

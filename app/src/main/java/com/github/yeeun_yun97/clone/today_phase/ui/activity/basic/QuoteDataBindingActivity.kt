@@ -1,6 +1,5 @@
 package com.github.yeeun_yun97.clone.today_phase.ui.activity.basic
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
